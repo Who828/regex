@@ -6,7 +6,7 @@
         (else (match regex (cdrs string)))))
 
 (define (matchhere regex string)
-  (cond ((equal? (cars regex) "") #t)
+  (cond ((empty? (cars regex)) #t)
         ((equal? (cadrs regex) "*") 
          (matchstar (cars regex) (cdrs (cdrs string)) string))
         ((and (equal? (cars regex) "$") (empty? (cadrs regex)))
