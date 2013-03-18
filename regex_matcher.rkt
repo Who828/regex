@@ -17,7 +17,7 @@
 
 (define (matchstar char regex string)
   (cond ((matchhere regex string) #t)
-        ((not (and (not (empty? string)) (or (equal? (cars string) c) (equal? c "."))))
+        ((not (and (not (empty? string)) (or (equal? (cars string) char) (equal? char "."))))
          #f)
         (else (matchstar char regex (cdrs string)))))
 
