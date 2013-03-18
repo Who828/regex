@@ -8,7 +8,7 @@
 (define (matchhere regex string)
   (cond ((empty? (cars regex)) #t)
         ((equal? (cadrs regex) "*") 
-         (matchstar (cars regex) (cdrs (cdrs string)) string))
+         (matchstar (cars regex) (cdrs (cdrs regex)) string))
         ((and (equal? (cars regex) "$") (empty? (cadrs regex)))
          (empty? string))
         ((and (not (empty? string)) (or (equal? (cars regex) ".") (equal? (cars regex) (cars string))))
@@ -17,7 +17,7 @@
 
 (define (matchstar char regex string)
   (cond ((matchhere regex string) #t)
-        ((not (and (not (empty? string)) (or (equal? (cars string) char) (equal? char "."))))
+        ((not (and (not (empty? string)) (or (equal? (cars string) char) (equal? (cars string) "."))))
          #f)
         (else (matchstar char regex (cdrs string)))))
 
